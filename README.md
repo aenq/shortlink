@@ -35,4 +35,4 @@
   npm run dev
 ```
 
-Open a web browser and visit http://localhost:5001
+Open a web browser and visit http://localhost:5001/api/shortlinks
