@@ -14,12 +14,14 @@ const client = new Client(db_url)
 client.connect()
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false}))
+
+app.set('view engine', 'ejs');
 
 app.get('/api/shortlinks', async (req, res) => {
     try {
         const shortlinks = await prisma.shortlinks.findMany();
-        console.log(shortlinks)
-        res.json(shortlinks);
+        res.render('index', {shortlinks: shortlinks})
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -35,8 +37,7 @@ app.post('/api/shortlinks', async (req, res) => {
         },
       });
   
-      res.json(data);
-      console.log(data);
+      res.redirect('/api/shortlinks')
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
