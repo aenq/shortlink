@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 app.get('/api/shortlinks', async (req, res) => {
     try {
         const shortlinks = await prisma.shortlinks.findMany();
-        res.render('index', {shortlinks: shortlinks})
+        res.json({shortlinks: shortlinks})
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -37,7 +37,7 @@ app.post('/api/shortlinks', async (req, res) => {
         },
       });
   
-      res.redirect('/api/shortlinks')
+      res.json({data: data})
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -60,15 +60,12 @@ app.get('/api/:shortUrl', async (req, res) => {
         data: { clicks: shortUrl.clicks + 1 },
       });  
   
-      res.redirect(shortUrl.longUrl);
-      console.log(shortUrl.longUrl)
+      res.json(shortUrl)
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
 });
   
-  
-
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`)
 });
