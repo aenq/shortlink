@@ -1,0 +1,16 @@
+/* src/assets/styles.css */
+.alert {
+  font-size: 1.2rem;
+}
+
+.input-group {
+  margin-top: 10px; /* Memberi jarak atas untuk grup input */
+}
+
+.input-margin {
+  margin-right: 10px; /* Atur jarak yang diinginkan */
+}
+
+.create-shortlink {
+  margin-bottom: 20px; /* Memberi jarak bawah untuk komponen */
+}
